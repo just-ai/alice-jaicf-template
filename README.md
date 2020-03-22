@@ -9,17 +9,23 @@
 
 ### Развертывание на Heroku
 
-[Скопируйте ваш OAuth токен](https://oauth.yandex.ru/authorize?response_type=token&client_id=c473ca268cd749d3a8371351a8f2bcbd), а затем кликните на кноку ниже
+1. <a href="https://oauth.yandex.ru/authorize?response_type=token&client_id=c473ca268cd749d3a8371351a8f2bcbd" target="_blank">
+    Скопируйте ваш OAuth токен
+</a>
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+2. Нажмите на кнопку ниже
+
+<a href="https://heroku.com/deploy" target="_blank">
+  <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
+</a><br/><br/>
 
 Вебхук будет автоматически развернут в облаке Heroku, и вы получите рабочий сервер, который далее сможете обновлять (см ниже).
 
-_При установке укажите ваш OAuth токен._
+**При установке укажите ваш OAuth токен.**
 
 ### Тестирование
 
-1. После развертывания вебхука, нажмите на кнопку **Open app** и скопируйте URL. Это и есть ваш вебхук.
+1. После развертывания вебхука нажмите на кнопку **View** и скопируйте URL. Это и есть ваш вебхук.
 2. Создайте новый навык для Алисы в [Яндекс Диалогах](https://dialogs.yandex.ru/developer).
 3. Укажите название навыка и URL вебхука, который вы скопировали (_остальные поля необязательны_).
 4. Перейдите на вкладку _Тестирование_ - навык будет запущен автоматически.
