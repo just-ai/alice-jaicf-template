@@ -1,0 +1,13 @@
+{
+  "name": "Шаблон навыка Алисы на JAICF",
+  "description": "Вебхук навыка для Яндекс Алисы, разработанный на фреймворке JAICF",
+  "repository": "https://github.com/just-ai/alice-jaicf-template",
+  "logo": "https://framework.just-ai.com/images/favicons/mstile-150x150.png",
+  "image": "heroku/java",
+  "addons": ["mongolab:sandbox"],
+  "env": {
+    "OAUTH_TOKEN": {
+      "description": "Ваш OAuth токен, необходим для автоматической загрузки картинок"
+    }
+  }
+}
