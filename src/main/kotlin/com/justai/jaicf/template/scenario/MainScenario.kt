@@ -39,7 +39,7 @@ object MainScenario: Scenario() {
 
             state("yes") {
                 activators {
-                    regex("да")
+                    regex("да|есть")
                 }
 
                 action {
@@ -49,8 +49,7 @@ object MainScenario: Scenario() {
 
             state("no") {
                 activators {
-                    regex("нет")
-                    regex("отбой")
+                    regex("нет|отбой")
                 }
 
                 action {
@@ -60,14 +59,8 @@ object MainScenario: Scenario() {
             }
         }
 
-        state("fallback", noContext = true) {
-            activators {
-                catchAll()
-            }
-
-            action {
-                reactions.say("Не тратьте моего времени зря. Начните сообщение со слова \"Докладываю\".")
-            }
+        fallback {
+            reactions.say("Не тратьте мое время зря. Начинайте донос со слова \"Докладываю\".")
         }
     }
 }

@@ -56,7 +56,7 @@ git pull origin master
 Для этого можно установить [ngrok](https://ngrok.com), а затем выполнить команду `ngrok http 8080` в терминале.
 Таким образом все запросы от Алисы будут приходить на ваш локальный ПК, и вы сможете отлаживать сценарий навыка.
 
-> Изучите [документацияю JAICF](https://github.com/just-ai/jaicf-kotlin/tree/master/channels/yandex-alice), чтобы понимать, как разрабатывать навык для Алисы
+> Изучите [документацию JAICF](https://github.com/just-ai/jaicf-kotlin/tree/master/channels/yandex-alice), чтобы понимать, как разрабатывать навык для Алисы
 
 #### Обновление сервера
 
@@ -72,4 +72,4 @@ Heroku автоматически соберет и обновит ваш сер
 
 # Обратная связь
 
-Если у вас возникли вопросы или проблемы, вы можете задать их в [Slack сообществе фреймворка JAICF](https://join.slack.com/t/jaicf/shared_invite/zt-clzasfyq-f4gv8hf3JHD4RmpMtrt0Aw) или создать новый Issue в этом репозитории.
+Если у вас возникли вопросы или проблемы, вы можете задать их в [Slack сообществе фреймворка JAICF](https://join.slack.com/t/jaicf/shared_invite/zt-clzasfyq-f4gv8hf3JHD4RmpMtrt0Aw) или [создать задачу](https://github.com/just-ai/alice-jaicf-template/issues) в этом репозитории.
