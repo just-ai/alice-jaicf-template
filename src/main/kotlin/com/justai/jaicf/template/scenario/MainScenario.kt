@@ -4,7 +4,9 @@ import com.justai.jaicf.channel.yandexalice.AliceEvent
 import com.justai.jaicf.channel.yandexalice.alice
 import com.justai.jaicf.model.scenario.Scenario
 
-object MainScenario: Scenario() {
+object MainScenario: Scenario(
+    dependencies = listOf(RecordScenario)
+) {
     init {
         state("main") {
             activators {
@@ -12,55 +14,55 @@ object MainScenario: Scenario() {
             }
 
             action {
-                reactions.say("Майор на связи. Докладывайте.")
-                reactions.alice?.image(
-                    "https://i.imgur.com/YOnWzLM.jpg",
-                    "Майор на связи",
-                    "Начните сообщение со слова \"Докладываю\"")
+                reactions.run {
+                    say("Управдом слушает. Вы хотите сообщить ваши показания счетчиков?")
+                    buttons("Да", "Нет")
+                    alice?.image(
+                        "https://i.imgur.com/SUSGpqG.jpg",
+                        "Управдом слушает",
+                        "Хотите сообщить ваши показания счетчиков?")
+                }
             }
         }
 
-        state("report") {
+        state("yes") {
             activators {
-                regex("докладываю .+")
+                regex("да|хочу")
             }
 
             action {
-                reactions.run {
-                    say("Спасибо.")
-                    sayRandom(
-                        "Ваш донос зарегистрирован под номером ${random(1000, 9000)}.",
-                        "Оставайтесь на месте. Не трогайте вещественные доказательства."
-                    )
-                    say("У вас есть еще какая-нибудь информация?")
-                    buttons("Да", "Нет")
-                }
+                record("Сколько вы потратили холодной воды?", "warm")
             }
 
-            state("yes") {
-                activators {
-                    regex("да|есть")
-                }
+            state("warm") {
 
                 action {
-                    reactions.say("Докладывайте.")
+                    record("Сколько ушло горячей?", "done")
+                }
+
+                state("done") {
+                    action {
+                        reactions.say("Записала ваши показания. Ждите квитанцию на оплату.")
+                        reactions.alice?.endSession()
+                    }
                 }
             }
+        }
 
-            state("no") {
-                activators {
-                    regex("нет|отбой")
-                }
+        state("no") {
+            activators {
+                regex("нет|не хочу")
+            }
 
-                action {
-                    reactions.sayRandom("Отбой.", "До связи.")
-                    reactions.alice?.endSession()
-                }
+            action {
+                reactions.say("Тогда не отвлекайте меня от работы. До свидания!")
+                reactions.alice?.endSession()
             }
         }
 
         fallback {
-            reactions.say("Не тратьте мое время зря. Начинайте донос со слова \"Докладываю\".")
+            reactions.say("Не тратьте мое время зря. Вы хотите сообщить показания счетчиков?")
+            reactions.buttons("Да", "Нет")
         }
     }
 }
