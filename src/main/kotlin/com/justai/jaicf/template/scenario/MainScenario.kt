@@ -1,6 +1,6 @@
 package com.justai.jaicf.template.scenario
 
-import com.justai.jaicf.channel.yandexalice.AliceEvent
+import com.justai.jaicf.channel.yandexalice.model.AliceEvent
 import com.justai.jaicf.channel.yandexalice.alice
 import com.justai.jaicf.model.scenario.Scenario
 
