@@ -1,32 +1,31 @@
 package com.justai.jaicf.template.scenario
 
+import com.justai.jaicf.builder.Scenario
 import com.justai.jaicf.context.ActionContext
+import com.justai.jaicf.context.DefaultActionContext
 import com.justai.jaicf.model.scenario.Scenario
 
-object RecordScenario: Scenario() {
+val RecordScenario = Scenario {
 
-    init {
+    state("record", modal = true) {
 
-        state("record", modal = true) {
-
-            state("data") {
-                activators {
-                    regex("\\d+.*")
-                }
-
-                action {
-                    reactions.goBack()
-                }
+        state("data") {
+            activators {
+                regex("\\d+.*")
             }
 
-            fallback {
-                reactions.sayRandom("Сколько-сколько?", "Повторите еще раз")
+            action {
+                reactions.goBack()
             }
+        }
+
+        fallback {
+            reactions.sayRandom("Сколько-сколько?", "Повторите еще раз")
         }
     }
 }
 
-fun ActionContext.record(message: String, callback: String) {
+fun DefaultActionContext.record(message: String, callback: String) {
     reactions.say(message)
     reactions.changeState("/record", callback)
 }

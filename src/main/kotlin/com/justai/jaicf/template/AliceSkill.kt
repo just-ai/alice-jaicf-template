@@ -7,17 +7,16 @@ import com.justai.jaicf.activator.regex.RegexActivator
 import com.justai.jaicf.context.manager.InMemoryBotContextManager
 import com.justai.jaicf.context.manager.mongo.MongoBotContextManager
 import com.justai.jaicf.template.scenario.MainScenario
-import com.mongodb.MongoClient
-import com.mongodb.MongoClientURI
+import com.mongodb.client.MongoClients
+
 
 private val contextManager = System.getenv("MONGODB_URI")?.let { url ->
-    val uri = MongoClientURI(url)
-    val client = MongoClient(uri)
-    MongoBotContextManager(client.getDatabase(uri.database!!).getCollection("contexts"))
+    val client = MongoClients.create(url)
+    MongoBotContextManager(client.getDatabase("jaicf").getCollection("contexts"))
 } ?: InMemoryBotContextManager
 
 val skill = BotEngine(
-    model = MainScenario.model,
+    scenario = MainScenario,
     defaultContextManager = contextManager,
     activators = arrayOf(
         RegexActivator,
